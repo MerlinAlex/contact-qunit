@@ -111,7 +111,27 @@
       });
 
       QUnit.test("sort contact tests", function (assert) {
-        assert.ok(false);
+          var bouton=$('#button_sort');
+          bouton.click();
+          var liste = Contact.Contacts.instance();
+          var i=liste.iterator();
+          var ordre = [];
+          var j=0;
+          var k=0;
+
+          while(i.hasNext()){
+              var val=i.next();
+              ordre.push(val.lastName());
+          }
+          ordre.sort();
+          var i=liste.iterator();
+          var tab=$('table tbody td');
+          while(i.hasNext()){
+              var val=i.next();
+              assert.equal(ordre[j],tab[k+1].innerText);
+              j+=1;
+              k+=6;
+          }
       });
     </script>
     <!-- END - Les tests -->
